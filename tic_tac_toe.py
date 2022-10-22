@@ -96,51 +96,46 @@ def victory_for(board, sign):
     # the player using 'O's or 'X's has won the game
     global winner
     global win_combination
-    win_combination = []
 
     # horizontal lines
     for i in range(3):
         win_count = 0
-        win_combination = []
         for j in range(3):   
             if board[i][j] == sign:
                 win_count += 1
-                win_combination.append(fields[i][j])
                 if win_count == 3:
                     winner = sign
+                    win_combination = [fields[i][0], fields[i][1], fields[i][2]]
                     break
     # vertical lines
     for i in range(3):
         win_count = 0
-        win_combination = []
         for j in range(3):
             if board[j][i] == sign:
                 win_count += 1
-                win_combination.append(fields[j][i])
                 if win_count == 3:
                     winner = sign
+                    win_combination = [fields[0][i], fields[1][i], fields[2][i]]
                     break
     # diagonal 1-5-9 (0,0; 1,1; 2,2)
     for i in range(1):
         win_count = 0
-        win_combination = []
         for j in range(3):
             if board[j][j] == sign:
                 win_count += 1
-                win_combination.append(fields[j][j])
                 if win_count == 3:
                     winner = sign
+                    win_combination = [1, 5, 9]
                     break
     # diagonal 7-5-3 (2,0; 1,1; 0,2)
     for i in range(1):
         win_count = 0
-        win_combination = []
         for j in range(3):
             if board[2-j][j] == sign:
                 win_count += 1
-                win_combination.append(fields[2-j][j])
                 if win_count == 3:
                     winner = sign
+                    win_combination = [7, 5, 3]
                     break
 
 while len(free_fields) > 0:
