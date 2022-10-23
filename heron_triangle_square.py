@@ -2,7 +2,7 @@ def is_a_triangle(a, b, c):
     return a + b > c and b + c > a and c + a > b
 
 
-def heron(a, b, c): #triangle square formula by Heron
+def heron(a, b, c):  # triangle square formula by Heron
     p = (a + b + c) / 2
     return (p * (p - a) * (p - b) * (p - c)) ** 0.5
 

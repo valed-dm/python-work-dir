@@ -1,11 +1,11 @@
 ####################
 i = 0
-while i <= 5 :
+while i <= 5:
     i += 1
     if i % 2 == 0:
         break
     print("*")
-print(3%2)
+print(3 % 2)
 ####################
 my_list = [1, 2, 3, 4, 5]
 for v in range(len(my_list)):
@@ -30,7 +30,7 @@ print(my_list_2)
 my_list = [1, 2, 3, 4]
 print(my_list[-3:-2])
 ####################
-my_list = [i for i  in  range(-10, 2)]
+my_list = [i for i in range(-10, 2)]
 print(my_list)
 ####################
 a = 1

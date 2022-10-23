@@ -5,5 +5,6 @@ def fib(n):
         return 1
     return fib(n - 1) + fib(n - 2)
 
+
 for n in range(11):
     print(n, "-> ", fib(n))

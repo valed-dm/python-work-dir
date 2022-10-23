@@ -1,16 +1,16 @@
-# Create a for loop that counts from 0 to 10, and prints odd numbers to the screen.
+# Create a fo#r loop that counts from 0 to 10, and prints odd numbers to the screen.
 for i in range(11):
-    if i % 2: # True == 1, False == 0
-        print(i, end=",") # odds
+    if i % 2:  # True == 1, False == 0
+        print(i, end=",")  # odds
 for i in range(11):
     if i % 2 == 0:
-        print(i, end=";") # evens
+        print(i, end=";")  # evens
 
-#Create a while loop that counts from 0 to 10, and prints odd numbers to the screen.
+# Create a while loop that counts from 0 to 10, and prints odd numbers to the screen.
 x = 1
 while x < 11:
-    if x % 2: # True == 1, False == 0
-        print(x, end=",") # odds
+    if x % 2:  # True == 1, False == 0
+        print(x, end=",")  # odds
     x += 1
 
 # Create a program with a for loop and a break statement.

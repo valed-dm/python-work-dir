@@ -1,11 +1,12 @@
 from random import randrange
 
-board = [[1,2,3],[4,"X",6],[7,8,9]]
-fields = [(1,2,3), (4,5,6), (7,8,9)]
-free_fields = [1,2,3,4,6,7,8,9]
+board = [[1, 2, 3], [4, "X", 6], [7, 8, 9]]
+fields = [(1, 2, 3), (4, 5, 6), (7, 8, 9)]
+free_fields = [1, 2, 3, 4, 6, 7, 8, 9]
 win_combination = []
 user_error = False
 winner = ""
+
 
 def display_board(board):
     # The function accepts one parameter containing the board's current status
@@ -13,23 +14,24 @@ def display_board(board):
     hor_line = ("+" + 7*"-")*3 + "+"
     ver_line = ("|" + 7*" ")*3 + "|"
     game_lines = {0: "|", 1: "|", 2: "|"}
-    
+
     for i in range(3):
         for j in range(3):
             game_lines[i] += 3*" " + str(board[i][j]) + 3*" " + "|"
-    
+
     game_board = {2: game_lines[0], 6: game_lines[1], 10: game_lines[2]}
     for i in range(13):
-        if i in [0,4,8,12]:
+        if i in [0, 4, 8, 12]:
             game_board[i] = hor_line
-        if i in [1,3,5,7,9,11]:
+        if i in [1, 3, 5, 7, 9, 11]:
             game_board[i] = ver_line
-            
+
     for i in range(13):
         print(game_board[i])
-   
+
+
 def user_move(board):
-    # The function accepts the board's current status, asks the user about their move, 
+    # The function accepts the board's current status, asks the user about their move,
     # checks the input, and updates the board according to the user's decision.
     global user_error
 
@@ -39,8 +41,8 @@ def user_move(board):
             if i < len(free_fields) - 1:
                 move_to += str(free_fields[i]) + ","
             else:
-                move_to += str(free_fields[i])+ ": "
-        
+                move_to += str(free_fields[i]) + ": "
+
         while True:
             user_move = input("Choose your move: " + move_to)
             if type(int(user_move)) == int:
@@ -60,7 +62,7 @@ def user_move(board):
                     break
         else:
             raise ValueError
-            
+
         for i in range(3):
             for j in range(3):
                 if board[i][j] == user_move:
@@ -70,7 +72,9 @@ def user_move(board):
 
     except ValueError:
         user_error = True
-        print("You've entered " + str(user_move) + ". Please, enter a valid number.")
+        print("You've entered " + str(user_move) +
+              ". Please, enter a valid number.")
+
 
 def computer_move(board):
     # The function accepts the board's current status
@@ -82,17 +86,18 @@ def computer_move(board):
 
     computer_move = free_fields[random]
     del free_fields[random]
-    
+
     print("computer move:", computer_move)
-    
+
     for i in range(3):
         for j in range(3):
             if board[i][j] == computer_move:
                 board[i][j] = "X"
                 break
 
+
 def victory_for(board, sign):
-    # The function analyzes the board's status in order to check if 
+    # The function analyzes the board's status in order to check if
     # the player using 'O's or 'X's has won the game
     global winner
     global win_combination
@@ -100,12 +105,13 @@ def victory_for(board, sign):
     # horizontal lines
     for i in range(3):
         win_count = 0
-        for j in range(3):   
+        for j in range(3):
             if board[i][j] == sign:
                 win_count += 1
                 if win_count == 3:
                     winner = sign
-                    win_combination = [fields[i][0], fields[i][1], fields[i][2]]
+                    win_combination = [fields[i][0],
+                                       fields[i][1], fields[i][2]]
                     break
     # vertical lines
     for i in range(3):
@@ -115,7 +121,8 @@ def victory_for(board, sign):
                 win_count += 1
                 if win_count == 3:
                     winner = sign
-                    win_combination = [fields[0][i], fields[1][i], fields[2][i]]
+                    win_combination = [fields[0][i],
+                                       fields[1][i], fields[2][i]]
                     break
     # diagonal 1-5-9 (0,0; 1,1; 2,2)
     for i in range(1):
@@ -138,6 +145,7 @@ def victory_for(board, sign):
                     win_combination = [7, 5, 3]
                     break
 
+
 while len(free_fields) > 0:
     display_board(board)
     user_move(board)
@@ -152,7 +160,7 @@ while len(free_fields) > 0:
         victory_for(board, "X")
         if winner == "X":
             break
- 
+
 if len(winner) == 0:
     print("It's a draw")
 elif winner == "O":

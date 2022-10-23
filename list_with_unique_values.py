@@ -5,7 +5,7 @@ for i in range(qty):
     my_list.append(int(input("enter the num " + str(i + 1) + ": ")))
 
 print(my_list)
-    
+
 new_list = []
 for num in my_list:
     if num in new_list:

@@ -1,9 +1,9 @@
 def is_prime(num):
     count = 0
-    for i in range(num) :
-        if num % (i + 1) == 0 :
+    for i in range(num):
+        if num % (i + 1) == 0:
             count += 1
-        if count == 2 and i < (num - 1) :
+        if count == 2 and i < (num - 1):
             return False
     return True
 
