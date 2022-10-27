@@ -13,11 +13,12 @@ while True:
         value = int(input_data)
         print('The reciprocal of', value, 'is', 1/value)
         break
-    except ValueError:
+    except ValueError: #  In general, this exception is raised when a function (like int() or float()) 
+                       # receives an argument of a proper type, but its value is unacceptable.
         print('I do not know what to do. Try again')
         data_entered()
         continue
-    except ZeroDivisionError:
+    except ZeroDivisionError: # /, //, and %.
         print('Division by zero is not allowed in our Universe.')
         data_entered()
         continue
