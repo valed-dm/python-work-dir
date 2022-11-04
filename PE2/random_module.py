@@ -3,14 +3,15 @@
 # for name in dir(random):
 #     print(name)
 
-# from random import random
-# for i in range(5):
-#     print(random())
+from random import random
+for i in range(5):
+    print(random())
 
 
 # Due to the fact that the seed is always set with the same value, the sequence of generated values always looks the same.
-from random import random, seed
+from random import seed
 seed(0)
+# seed(100) sequence also looks the same.
 for i in range(5):
     print(random())
 
