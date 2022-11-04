@@ -1,5 +1,5 @@
+#Now we're going to show you how the two namespaces (yours and the module's one) can coexist.
 import math
-
 
 def sin(x):
     if 2 * x == pi:
@@ -7,10 +7,10 @@ def sin(x):
     else:
         return None
 
-
 pi = 3.14
 
 print(sin(pi/2))
 print(math.sin(math.pi/2))
 
-#Now we're going to show you how the two namespaces (yours and the module's one) can coexist.
+# from math import sin, pi
+# print(sin(pi/2))
