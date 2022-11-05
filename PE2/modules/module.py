@@ -38,4 +38,4 @@ if __name__ == "__main__":
     my_list = [i+1 for i in range(5)]
     print(suml(my_list) == 15)
     print(prodl(my_list) == 120)
-    print(__counter) # it shows when suml, prodl are invocked
+    print(__counter) # it counts when suml, prodl are invoked
