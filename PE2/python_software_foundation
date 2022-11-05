@@ -2,3 +2,9 @@ https://wiki.python.org/psf/PackagingWG
 
 # PyPI (it's short for Python Package Index)
 https://pypi.org/
+
+Why? Because pip means “pip installs packages”, and the pip inside “pip installs packages” means “pip installs packages” and ...
+
+Let’s stop there. Thank you for your cooperation.
+
+By the way, there are a few other very famous recursive acronyms. One of them is Linux, which can be interpreted as “Linux is Not Unix”.
