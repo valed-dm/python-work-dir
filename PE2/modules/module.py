@@ -33,9 +33,17 @@ def prodl(the_list):
     return prod
 
 
+# if __name__ == "__main__":
+#     print("I prefer to be a module, but I can do some tests for you.")
+#     my_list = [i+1 for i in range(5)]
+#     print(suml(my_list) == 15)
+#     print(prodl(my_list) == 120)
+#     print(__counter) # it counts when suml, prodl are invoked
+
+# You want to prevent your module's user from running your code as an ordinary script. How will you achieve such an effect?
+
+import sys
+
 if __name__ == "__main__":
-    print("I prefer to be a module, but I can do some tests for you.")
-    my_list = [i+1 for i in range(5)]
-    print(suml(my_list) == 15)
-    print(prodl(my_list) == 120)
-    print(__counter) # it counts when suml, prodl are invoked
+    print("Don't do that!")
+    sys.exit()
