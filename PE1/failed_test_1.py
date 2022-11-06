@@ -40,3 +40,8 @@ d = a | b
 e = a ^ b
 print(с + d + e)
 ####################
+
+# def fun(in=2, out=3): code is erroneous
+#     return in * out
+
+# print("fun function", fun(3))
