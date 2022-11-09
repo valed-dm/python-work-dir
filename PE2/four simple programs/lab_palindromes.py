@@ -1,4 +1,4 @@
-# palindrome checkered
+# palindrome check
 
 str = input("Please enter your string: ")
 str = str.replace(" ", "").upper()
