@@ -64,3 +64,8 @@ sudoku_test(sb)
 
 # Sample input: 295743861 431865927 876192543 387459216 612387495 549216738 763524189 928671354 154938672
 # Sample input: 195743862 431865927 876192543 387459216 612387495 549216738 763524189 928671354 254938671
+
+# Your task is to write a program which:
+
+# reads 9 rows of the Sudoku, each containing 9 digits (check carefully if the data entered are valid)
+# outputs Yes if the Sudoku is valid, and No otherwise.
