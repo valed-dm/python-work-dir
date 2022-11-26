@@ -5,11 +5,16 @@
 # (it returns -1 then)
 # it works with strings only - don't try to apply it to any other sequence.
 
+# Note: don't use find() if you only want to check if a single character occurs within a string
+#  - the in operator will be significantly faster.
+
 t = 'theta'
 print(t.find('eta'))
 print(t.find('et'))
 print(t.find('the'))
 print(t.find('ha'))
+
+print("in usage:", "t" in t)
 
 # If you want to perform the find, not from the string's beginning, 
 # but from any position, you can use a two-parameter variant of the find() method. 

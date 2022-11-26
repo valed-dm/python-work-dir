@@ -7,7 +7,7 @@ str = "phi       chi\npsi".split()
 
 print(str)
 
-print(",".join(str))
+print(", ".join(str))
 print("\n".join(str))
 print()
 
