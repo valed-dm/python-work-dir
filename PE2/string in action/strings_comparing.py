@@ -15,22 +15,22 @@
 
 # Two strings are equal when they consist of the same characters in the same order. By the same fashion, two strings are not equal when they don't consist of the same characters in the same order.
 # Both comparisons give True as a result:
-print('alpha' == 'alpha')
-print('alpha' != 'Alpha')
+print("1) ", 'alpha' == 'alpha')
+print("2) ", 'alpha' != 'Alpha')
 print()
 # The final relation between strings is determined by comparing the first different character in both strings (keep ASCII/UNICODE code points in mind at all times.)
 # When you compare two strings of different lengths and the shorter one is identical to the longer one's beginning, the longer string is considered greater.
 # Just like here:
-print('alpha' < 'alphabet')
+print("3) ", 'alpha' < 'alphabet')
 print()
 # String comparison is always case-sensitive (upper-case letters are taken as lesser than lower-case).
 # The expression is True:
-print('beta' > 'Beta')
+print("4) ", 'beta' > 'Beta')
 print()
 
-print('10' == '010')
-print('10' > '010')
-print('10' > '8')
-print('20' < '8')
-print('20' < '80')
-print('10' > 10) # TypeError: '>' not supported between instances of 'str' and 'int'
+print("5) ", '10' == '010')
+print("6) ", '10' > '010')
+print("7) ", '10' > '8')
+print("8) ", '20' < '8')
+print("9) ", '20' < '80')
+print("10) ", '10' > 10) # TypeError: '>' not supported between instances of 'str' and 'int'

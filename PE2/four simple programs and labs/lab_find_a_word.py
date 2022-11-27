@@ -1,4 +1,13 @@
 # find a word
+# dog
+# "vcxzxduybfdsobywuefgas"
+# "vcxzxdcybfdstbywuefsas"
+
+# donor
+# Nabucodonosor
+
+# donut
+# Nabucodonosor
 
 count = 0
 cycle = 0

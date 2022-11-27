@@ -40,7 +40,7 @@
 # line 23: ...the number is invalid.
 # Let's add some test data (all these numbers are valid - you can invalidate them by changing any character).
 
-# British: GB72 HBZU 7006 7212 1253 00
+# British: 
 # French: FR76 30003 03620 00020216907 50
 # German: DE02100100100152517108
 # If you are an EU resident, you can use you own account number for tests.

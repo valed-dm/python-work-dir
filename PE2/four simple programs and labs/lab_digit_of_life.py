@@ -12,6 +12,8 @@ birth_list = list(input('''
 Enter the date of your birth in any format:
 YYYYMMDD, or YYYYDDMM, or MMDDYYYY: '''))
 
+print(birth_list)
+
 def list_sum(list):
     sum = 0
     for num in list:

@@ -14,8 +14,8 @@ num_list = []
 
 user_input = input("please, enter integer number: ")
 
-for ch in user_input:
-    num_list.append(int(ch))
+for char_num in user_input:
+    num_list.append(int(char_num))
 
 
 def display_num(num):

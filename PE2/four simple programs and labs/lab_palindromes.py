@@ -1,4 +1,7 @@
 # palindrome check
+# Ten animals I slam in a net
+# Eleven animals I slam in a net
+# Ten animalls i slam in a net
 
 str = input("Please enter your string: ")
 str = str.replace(" ", "").upper()
