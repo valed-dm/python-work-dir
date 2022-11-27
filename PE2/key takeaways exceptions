@@ -1,0 +1,15 @@
+1. Some abstract built-in Python exceptions are:
+
+ArithmeticError,
+BaseException,
+LookupError.
+
+2. Some concrete built-in Python exceptions are:
+
+AssertionError,
+ImportError,
+IndexError,
+KeyboardInterrupt,
+KeyError,
+MemoryError,
+OverflowError.
