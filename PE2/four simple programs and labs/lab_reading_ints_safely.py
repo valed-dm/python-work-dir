@@ -15,7 +15,7 @@ def read_int(prompt, min, max):
         except:
             print('Error: unexpected exception')
 
-    return int(user_input)
+    return user_input
 
 v = read_int("Enter a number from -10 to 10: ", -10, 10)
 
