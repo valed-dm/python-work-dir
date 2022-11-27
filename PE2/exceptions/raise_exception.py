@@ -44,7 +44,8 @@ print("THE END.")
 # raise
 
 
-# There is one serious restriction: this kind of raise instruction may be used inside the except branch only; using it in any other context causes an error.
+# There is one serious restriction: this kind of raise instruction may be used inside the except branch only;
+# using it in any other context causes an error.
 
 # The instruction will immediately re-raise the same exception as currently handled.
 

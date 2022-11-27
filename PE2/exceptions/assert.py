@@ -34,3 +34,15 @@ print(x)
 #   File ".main.py", line 4, in 
 #     assert x >= 0.0
 # AssertionError
+
+def foo(x):
+    assert x # ??? this mechanism unclear at a moment. 
+    return 1/x
+
+
+try:
+    print(foo(0))
+except ZeroDivisionError:
+    print("zero")
+except:
+    print("some")
