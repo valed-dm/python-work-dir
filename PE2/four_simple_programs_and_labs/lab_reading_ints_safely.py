@@ -3,7 +3,7 @@ def read_int(prompt, min, max):
         try:
             user_input = int(input(prompt))
 
-            if not (user_input >= min and user_input <= max):
+            if not min <= user_input <= max:
                 print('Error: the value is not within permitted range (' + str(min) + '..' + str(max) + ')')
                 continue
             else:
