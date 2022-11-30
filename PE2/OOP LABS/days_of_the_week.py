@@ -25,7 +25,7 @@ class WeekDayError(Exception):
 class Weeker:
     week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
-    def __init__(self, day):
+    def __init__(self, day: str):
         if not day in Weeker.week:
             raise WeekDayError
         self.__day = day
@@ -33,7 +33,7 @@ class Weeker:
     def __str__(self):
         return self.__day
 
-    def add_days(self, n):
+    def add_days(self, n: int):
         day_position = Weeker.week.index(self.__day)
         day_shift = n % 7
         new_position = day_position + day_shift
@@ -41,7 +41,7 @@ class Weeker:
             new_position -= 7
         self.__day = Weeker.week[new_position]
 
-    def subtract_days(self, n):
+    def subtract_days(self, n: int):
         day_position = Weeker.week.index(self.__day)
         day_shift = n % 7
         new_position = day_position - day_shift
