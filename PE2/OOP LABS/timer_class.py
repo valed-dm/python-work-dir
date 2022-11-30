@@ -22,20 +22,15 @@
 # 00:00:00
 # 23:59:59
 
+def time_unit(num):
+    if num < 10:
+        return '0' + str(num)
+    return str(num)
+
 def format_time(h, m, s):
-    hh = mm = ss = '00'
-    if h < 10:
-        hh = '0' + str(h)
-    else:
-        hh = str(h)
-    if m < 10:
-        mm = '0' + str(m)
-    else:
-        mm = str(m)
-    if s < 10:
-        ss = '0' + str(s)
-    else:
-        ss = str(s)
+    hh = time_unit(h)
+    mm = time_unit(m)
+    ss = time_unit(s)
 
     t_str = hh + ':' + mm + ':' + ss
     return t_str
