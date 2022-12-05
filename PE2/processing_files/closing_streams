@@ -1,0 +1,72 @@
+Closing streams
+The last operation performed on a stream (this doesn't include the stdin, stdout, and stderr streams which don't require it) should be closing.
+
+That action is performed by a method invoked from within open stream object: 
+
+stream.close().
+
+the name of the function is definitely self-commenting: close()
+the function expects exactly no arguments; the stream doesn't need to be opened
+the function returns nothing but raises IOError exception in case of error;
+most developers believe that the close() function always succeeds and thus there is no need to check if it's done its task properly.
+
+This belief is only partly justified. If the stream was opened for writing and then a series of write operations were performed, it may happen that the data sent to the stream has not been transferred to the physical device yet (due to mechanism called caching or buffering).
+
+Since the closing of the stream forces the buffers to flush them, it may be that the flushes fail and therefore the close() fails too.
+We have already mentioned failures caused by functions operating with streams but not mentioned a word how exactly we can identify the cause of the failure.
+
+The possibility of making a diagnosis exists and is provided by one of streams' exception component which we are going to tell you about just now.
+
+
+
+
+Diagnosing stream problems
+
+The IOError object is equipped with a property named errno (the name comes from the phrase error number) and you can access it as follows:
+
+try:
+    # Some stream operations.
+except IOError as exc:
+    print(exc.errno)
+
+
+The value of the errno attribute can be compared with one of the predefined symbolic constants defined in the errno module.
+
+
+
+
+Let's take a look at some selected constants useful for detecting stream errors:
+
+errno.EACCES → Permission denied
+
+The error occurs when you try, for example, to open a file with the read only attribute for writing.
+
+errno.EBADF → Bad file number
+
+The error occurs when you try, for example, to operate with an unopened stream.
+
+errno.EEXIST → File exists
+
+The error occurs when you try, for example, to rename a file with its previous name.
+
+errno.EFBIG → File too large
+
+The error occurs when you try to create a file that is larger than the maximum allowed by the operating system.
+
+errno.EISDIR → Is a directory
+
+The error occurs when you try to treat a directory name as the name of an ordinary file.
+
+errno.EMFILE → Too many open files
+
+The error occurs when you try to simultaneously open more streams than acceptable for your operating system.
+
+errno.ENOENT → No such file or directory
+
+The error occurs when you try to access a non-existent file/directory.
+
+errno.ENOSPC → No space left on device
+
+The error occurs when there is no free space on the media.
+The complete list is much longer (it includes also some error codes not related to the stream processing.)
+
