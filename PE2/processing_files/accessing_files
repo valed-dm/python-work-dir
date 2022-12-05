@@ -1,0 +1,21 @@
+Accessing files from Python code
+One of the most common issues in the developer's job is to process data stored in files while the files are usually physically stored using storage devices - hard, optical, network, or solid-state disks.
+
+It's easy to imagine a program that sorts 20 numbers, and it's equally easy to imagine the user of this program entering these twenty numbers directly from the keyboard.
+
+It's much harder to imagine the same task when there are 20,000 numbers to be sorted, and there isn't a single user who is able to enter these numbers without making a mistake.
+
+It's much easier to imagine that these numbers are stored in the disk file which is read by the program. The program sorts the numbers and doesn't send them to the screen, but instead creates a new file and saves the sorted sequence of numbers there.
+
+If we want to implement a simple database, the only way to store the information between program runs is to save it into a file (or files if your database is more complex).
+
+
+
+
+In principle, any non-simple programming problem relies on the use of files, whether it processes images (stored in files), multiplies matrices (stored in files), or calculates wages and taxes (reading data stored in files).
+
+The concept of file storages
+
+You may ask why we have waited until now to show you these issues.
+
+The answer is very simple - Python's way of accessing and processing files is implemented using a consistent set of objects. There is no better moment to talk about it.

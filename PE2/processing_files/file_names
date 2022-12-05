@@ -1,0 +1,89 @@
+File names
+Different operating systems can treat the files in different ways. For example, Windows uses a different naming convention than the one adopted in Unix/Linux systems.
+
+If we use the notion of a canonical file name (a name which uniquely defines the location of the file regardless of its level in the directory tree) we can realize that these names look different in Windows and in Unix/Linux:
+
+
+The concept of file paths:
+windows: C:\directory\file
+linux: /directory/files
+
+
+As you can see, systems derived from Unix/Linux don't use the disk drive letter (e.g., C:) and all the directories grow from one root directory called /, while Windows systems recognize the root directory as \.
+
+
+
+In addition, Unix/Linux system file names are case-sensitive. Windows systems store the case of letters used in the file name, but don't distinguish between their cases at all.
+
+This means that these two strings: ThisIsTheNameOfTheFile and thisisthenameofthefile describe two different files in Unix/Linux systems, but are the same name for just one file in Windows systems.
+
+The main and most striking difference is that you have to use two different separators for the directory names: \ in Windows, and / in Unix/Linux.
+
+This difference is not very important to the normal user, but is very important when writing programs in Python.
+
+To understand why, try to recall the very specific role played by the \ inside Python strings.
+
+
+
+
+Suppose you're interested in a particular file located in the directory dir, and named file.
+
+Suppose also that you want to assign a string containing the name of the file.
+
+In Unix/Linux systems, it may look as follows:
+
+name = "/dir/file"
+
+
+But if you try to code it for the Windows system:
+
+name = "\dir\file"
+
+you'll get an unpleasant surprise: either Python will generate an error, or the execution of the program will behave strangely, as if the file name has been distorted in some way.
+
+In fact, it's not strange at all, but quite obvious and natural. Python uses the \ as an escape character (like \n).
+
+This means that Windows file names must be written as follows:
+
+name = "\\dir\\file"
+
+
+Fortunately, there is also one more solution. Python is smart enough to be able to convert slashes into backslashes each time it discovers that it's required by the OS.
+
+This means that any the following assignments:
+
+name = "/dir/file"
+name = "c:/dir/file"
+
+will work with Windows, too.
+
+Any program written in Python (and not only in Python, because that convention applies to virtually all programming languages) does not communicate with the files directly, but through some abstract entities that are named differently in different languages or environments - the most-used terms are handles or streams (we'll use them as synonyms here).
+
+The programmer, having a more- or less-rich set of functions/methods, is able to perform certain operations on the stream, which affect the real files using mechanisms contained in the operating system kernel.
+
+In this way, you can implement the process of accessing any file, even when the name of the file is unknown at the time of writing the program.
+
+
+
+
+The operations performed with the abstract stream reflect the activities related to the physical file.
+
+
+Accessing files - a tree structure concept
+
+
+To connect (bind) the stream with the file, it's necessary to perform an explicit operation.
+
+The operation of connecting the stream with a file is called opening the file, while disconnecting this link is named closing the file.
+
+Hence, the conclusion is that the very first operation performed on the stream is always open and the last one is close. The program, in effect, is free to manipulate the stream between these two events and to handle the associated file.
+
+This freedom is limited, of course, by the physical characteristics of the file and the way in which the file has been opened.
+
+Let us say again that the opening of the stream can fail, and it may happen due to several reasons: the most common is the lack of a file with a specified name.
+
+It can also happen that the physical file exists, but the program is not allowed to open it. There's also the risk that the program has opened too many streams, and the specific operating system may not allow the simultaneous opening of more than n files (e.g., 200).
+
+A well-written program should detect these failed openings, and react accordingly.
+
+
