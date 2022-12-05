@@ -1,0 +1,32 @@
+File streams
+The opening of the stream is not only associated with the file, but should also declare the manner in which the stream will be processed. This declaration is called an open mode.
+
+If the opening is successful, the program will be allowed to perform only the operations which are consistent with the declared open mode.
+
+There are two basic operations performed on the stream:
+
+read from the stream: the portions of the data are retrieved from the file and placed in a memory area managed by the program (e.g., a variable);
+write to the stream: the portions of the data from the memory (e.g., a variable) are transferred to the file.
+There are three basic modes used to open the stream:
+
+read mode: a stream opened in this mode allows read operations only; trying to write to the stream will cause an exception (the exception is named UnsupportedOperation, which inherits OSError and ValueError, and comes from the io module);
+
+write mode: a stream opened in this mode allows write operations only; attempting to read the stream will cause the exception mentioned above;
+
+update mode: a stream opened in this mode allows both writes and reads.
+
+
+
+Before we discuss how to manipulate the streams, we owe you some explanation. The stream behaves almost like a tape recorder.
+
+When you read something from a stream, a virtual head moves over the stream according to the number of bytes transferred from the stream.
+
+When you write something to the stream, the same head moves along the stream recording the data from the memory.
+
+Whenever we talk about reading from and writing to the stream, try to imagine this analogy. The programming books refer to this mechanism as the current file position, and we'll also use this term.
+
+
+The read/write concept
+
+
+It's necessary now to show you the object responsible for representing streams in programs.
