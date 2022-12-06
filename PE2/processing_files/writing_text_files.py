@@ -55,3 +55,31 @@ try:
     print("Lines in file:     ", lcnt)
 except IOError as e:
     print("I/O error occurred: ", strerror(e.errno))
+
+
+# Dealing with text files: continued
+# Look at the example in the editor. We've modified the previous code to 
+# write whole lines to the text file.
+
+# The contents of the newly created file are the same.
+
+# Note: you can use the same method to write to the stderr stream, but don't try to open it, 
+# as it's always open implicitly.
+
+# For example, if you want to send a message string to stderr to distinguish it from 
+# normal program output, it may look like this:
+
+# import sys
+# sys.stderr.write("My Error message added")
+
+
+
+from os import strerror
+
+try:
+    fo = open('newtext_by_whole_lines.txt', 'wt')
+    for i in range(10):
+        fo.write("line #" + str(i+1) + "\n")
+    fo.close()
+except IOError as e:
+    print("I/O error occurred: ", strerror(e.errno))
