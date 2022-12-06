@@ -45,4 +45,4 @@
 stream = open("/Users/dmitrijvaledinskij/Python/data/zen_of_python.txt",
               "rt", encoding="utf-8")
 
-print(stream.read())  # printing the content of the file
+print(stream.read())  # printing the content of the file (read(-1) = print all, default value)
