@@ -36,10 +36,11 @@ try:
     print('\n', s, '\n')
     ch = s.read(1)
     while ch != '':
-        if cnt % print_interval == 0:
-            print(ch, end='')
-        else:
-            print('', end='')
+        print(ch, end='')
+        # if cnt % print_interval == 0:
+        #     print(ch, end='')
+        # else:
+        #     print('', end='')
         cnt += 1
         ch = s.read(1)
     s.close()
