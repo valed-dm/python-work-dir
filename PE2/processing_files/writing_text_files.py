@@ -1,13 +1,22 @@
 # Dealing with text files: write()
-# Writing text files seems to be simpler, as in fact there is one method that can be used to perform such a task.
+# Writing text files seems to be simpler, as in fact there is one method that can be used 
+# to perform such a task.
 
-# The method is named write() and it expects just one argument - a string that will be transferred to an open file (don't forget - the open mode should reflect the way in which the data is transferred - writing a file opened in read mode won't succeed).
+# The method is named write() and it expects just one argument - 
+# a string that will be transferred to an open file 
+# (don't forget - the open mode should reflect the way in which the data is transferred - 
+# writing a file opened in read mode won't succeed).
 
-# No newline character is added to the write()'s argument, so you have to add it yourself if you want the file to be filled with a number of lines.
+# No newline character is added to the write()'s argument, 
+# so you have to add it yourself if you want the file to be filled with a number of lines.
 
-# The example in the editor shows a very simple code that creates a file named newtext.txt (note: the open mode w ensures that the file will be created from scratch, even if it exists and contains data) and then puts ten lines into it.
+# The example in the editor shows a very simple code that creates a file named newtext.txt 
+# (note: the open mode w ensures that the file will be created from scratch, 
+# even if it exists and contains data) and then puts ten lines into it.
 
-# The string to be recorded consists of the word line, followed by the line number. We've decided to write the string's contents character by character (this is done by the inner for loop) but you're not obliged to do it in this way.
+# The string to be recorded consists of the word line, 
+# followed by the line number. We've decided to write the string's contents character by character 
+# (this is done by the inner for loop) but you're not obliged to do it in this way.
 
 # We just wanted to show you that write() is able to operate on single characters.
 
@@ -69,11 +78,9 @@ except IOError as e:
 # For example, if you want to send a message string to stderr to distinguish it from 
 # normal program output, it may look like this:
 
+
 # import sys
 # sys.stderr.write("My Error message added")
-
-
-
 from os import strerror
 
 try:
