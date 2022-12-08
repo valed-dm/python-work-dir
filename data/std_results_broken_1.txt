@@ -1,0 +1,5 @@
+John	Smith first year student	5
+Anna	Boleyn second year student	4.5
+John	Smith	first year student 2
+Anna	Boleyn second year student	11
+Andrew	Cox	third year student 1.5

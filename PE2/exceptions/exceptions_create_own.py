@@ -1,23 +1,24 @@
 # How to create your own exception
-# The exceptions hierarchy is neither closed nor finished, and you can always extend it if you want or need to create your own world populated with your own exceptions.
+# The exceptions hierarchy is neither closed nor finished,
+# and you can always extend it if you want or need to create your own world populated with your own exceptions.
 
-# It may be useful when you create a complex module which detects errors and raises exceptions, and you want the exceptions to be easily distinguishable from any others brought by Python.
+# It may be useful when you create a complex module which detects errors and raises exceptions,
+# and you want the exceptions to be easily distinguishable from any others brought by Python.
 
 # This is done by defining your own, new exceptions as subclasses derived from predefined ones.
 
-# Note: if you want to create an exception which will be utilized as a specialized case of any built-in exception, derive it from just this one. If you want to build your own hierarchy, and don't want it to be closely connected to Python's exception tree, derive it from any of the top exception classes, like Exception.
+# Note: if you want to create an exception which will be utilized as a specialized case of any built-in exception,
+# derive it from just this one. If you want to build your own hierarchy, and don't want it to be closely connected
+# to Python's exception tree, derive it from any of the top exception classes, like Exception.
 
-# Imagine that you've created a brand new arithmetic, ruled by your own laws and theorems. It's clear that division has been redefined, too, and has to behave in a different way than routine dividing. It's also clear that this new division should raise its own exception, different from the built-in ZeroDivisionError, but it's reasonable to assume that in some circumstances, you (or your arithmetic's user) may want to treat all zero divisions in the same way.
+# Imagine that you've created a brand new arithmetic, ruled by your own laws and theorems.
+# It's clear that division has been redefined, too, and has to behave in a different way than routine dividing.
+# It's also clear that this new division should raise its own exception, different from the built-in ZeroDivisionError,
+# but it's reasonable to assume that in some circumstances, you (or your arithmetic's user) may want to treat
+# all zero divisions in the same way.
 
-# Demands like these may be fulfilled in the way presented in the editor. Look at the code, and let's analyze it:
-
-# We've defined our own exception, named MyZeroDivisionError, derived from the built-in ZeroDivisionError. As you can see, we've decided not to add any new components to the class.
-
-# In effect, an exception of this class can be - depending on the desired point of view - treated like a plain ZeroDivisionError, or considered separately.
-
-# The do_the_division() function raises either a MyZeroDivisionError or ZeroDivisionError exception, depending on the argument's value.
-
-# The function is invoked four times in total, while the first two invocations are handled using only one except branch (the more general one) and the last two ones with two different branches, able to distinguish the exceptions (don't forget: the order of the branches makes a fundamental difference!)
+# Demands like these may be fulfilled in the way presented in the editor.
+# Look at the code, and let's analyze it:
 
 class MyZeroDivisionError(ZeroDivisionError):
     pass
@@ -46,10 +47,27 @@ for mode in [False, True]:
 
 print()
 
+# We've defined our own exception, named MyZeroDivisionError, derived from the built-in ZeroDivisionError.
+# As you can see, we've decided not to add any new components to the class.
+
+# In effect, an exception of this class can be - depending on the desired point of view -
+# treated like a plain ZeroDivisionError, or considered separately.
+
+# The do_the_division() function raises either a MyZeroDivisionError or ZeroDivisionError exception,
+# depending on the argument's value.
+
+# The function is invoked four times in total, while the first two invocations are handled using only
+# one except branch (the more general one) and the last two ones with two different branches,
+# able to distinguish the exceptions (don't forget: the order of the branches makes a fundamental difference!)
+
+
 # How to create your own exception: continued
-# When you're going to build a completely new universe filled with completely new creatures that have nothing in common with all the familiar things, you may want to build your own exception structure.
-# For example, if you work on a large simulation system which is intended to model the activities of a pizza restaurant, it can be desirable to form a separate hierarchy of exceptions.
-# You can start building it by defining a general exception as a new base class for any other specialized exception. We've done in in the following way:
+# When you're going to build a completely new universe filled with completely new creatures that
+# have nothing in common with all the familiar things, you may want to build your own exception structure.
+# For example, if you work on a large simulation system which is intended to model the activities
+# of a pizza restaurant, it can be desirable to form a separate hierarchy of exceptions.
+# You can start building it by defining a general exception as a new base class for any other specialized exception.
+# We've done in in the following way:
 
 
 class PizzaError(Exception):
