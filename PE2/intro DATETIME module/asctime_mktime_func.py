@@ -34,6 +34,10 @@ timestamp = 1572879180
 st = time.gmtime(timestamp) # struct_time class
 
 print(st)
+print(st.tm_year)
+print(st.tm_mon)
+print(st.tm_yday)
+print(st.tm_wday)
 print(time.asctime(st))
 print(time.asctime())
 print(time.mktime((2019, 11, 4, 14, 53, 0, 0, 308, 0)))
