@@ -30,3 +30,4 @@ print('----------------')
 
 import time
 print(time.ctime())
+print(time.asctime())

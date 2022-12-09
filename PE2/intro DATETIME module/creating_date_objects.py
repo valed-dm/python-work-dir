@@ -5,7 +5,8 @@
 
 # The today method returns a date object representing the current local date. Note that the date object has three attributes: year, month, and day.
 
-# Be careful, because these attributes are read-only. To create a date object, you must pass the year, month, and day parameters as follows:
+# Be careful, because these attributes are read-only. To create a date object, you must pass 
+# the year, month, and day parameters as follows:
 
 from datetime import date
 
@@ -20,13 +21,15 @@ print('-----------------')
 
 # Parameter	Restrictions
 # year	
-# The year parameter must be greater than or equal to 1 (MINYEAR constant) and less than or equal to 9999 (MAXYEAR constant).
+# The year parameter must be greater than or equal to 1 (MINYEAR constant) and less than or equal to 9999 
+# (MAXYEAR constant).
 
 # month	
 # The month parameter must be greater than or equal to 1 and less than or equal to 12.
 
 # day	
-# The day parameter must be greater than or equal to 1 and less than or equal to the last day of the given month and year.
+# The day parameter must be greater than or equal to 1 and less than or equal 
+# to the last day of the given month and year.
 
 # Note: Later in this course you'll learn how to change the default date format.
 
