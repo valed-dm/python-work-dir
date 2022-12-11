@@ -1,11 +1,11 @@
 # The previous functions have one important disadvantage - they may produce repeating values even if the number of subsequent invocations is not greater than the width of the specified range.
 # Look at the code below - the program very likely outputs a set of numbers in which some elements are not unique:
 
-# from random import randint
+from random import randint
 
-# for i in range(10):
-#     print(randint(1, 10), end=', ')
-
+for i in range(10):
+    print(randint(8, 10), end=', ')
+print('\n----------------')
 
 from random import choice, sample
 

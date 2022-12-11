@@ -7,13 +7,16 @@
 # randrange(beg, end, step)
 # randint(left, right)
 
-# The first three invocations will generate an integer taken (pseudorandomly) from the range (respectively):
+# The first three invocations will generate an integer taken 
+# (pseudorandomly) from the range (respectively):
 # range(end)
 # range(beg, end)
 # range(beg, end, step)
 # Note the implicit right-sided exclusion!!!!!!
 
-# The last function is an equivalent of randrange(left, right+1) - it generates the integer value i, which falls in the range [left, right] (no exclusion on the right side).
+# The last function is an equivalent of randrange(left, right+1) 
+# - it generates the integer value i, which falls in the range [left, right] 
+# (no exclusion on the right side).
 
 from random import randrange, randint
 
