@@ -62,7 +62,7 @@ print(issubclass(A, C))
 
 print('----------------')
 
-# i didn't find right answer in test!
+# i got right answer in test!
 a = random.randrange(10, 100, 3) # start point 10 breaks the needed result
 b = random.randint(0, 100)
 c = random.choice((0, 100, 3))
@@ -72,6 +72,25 @@ print(a, b, c)  # expectations: possible output --> 6 82 0 <--
 for i in range(10, 100):
     if i % 3 == 0:
         print(i, end=' ')
+
+print('\n')
+
+
+import random
+
+
+# to evaluate sequence i + 3:
+def seq(left, right):
+    next = 0
+    for i in range(left, right):
+        if i == left:
+            print(i, end=' ')
+            next = i + 3
+        elif i == next:
+            print(next, end=' ')
+            next += 3
+
+seq(10, 100)
 
 print('\n---------------')
 
