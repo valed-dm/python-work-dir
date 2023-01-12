@@ -11,6 +11,7 @@
 
 
 # Основа:
+import redis
 from functools import wraps
 
 
@@ -28,6 +29,7 @@ def cache(func):
         else:
             res = func(*args, **kwargs)
             print(f"multiplier({key}) = {res}")
+
         # Do something after the function.
         cache[key] = res
         print(f"cache content: {cache}")
@@ -37,13 +39,52 @@ def cache(func):
     return wrapper
 
 
-@cache
+def cache_redis(func):
+    r = redis.Redis(db=0)
+
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+        # Do something before the function.
+        redis_dict = dict()
+        key: str = str(args[0])
+        val: bytes = r.get(key)
+
+        def r_data_print():
+            for k in r.keys():
+                crit = r.type(k).decode('utf-8') 
+                if crit == "string":
+                    k = k.decode('utf-8')
+                    if k.isdigit():
+                        redis_dict[k] = r.get(k).decode('utf-8')
+
+            print(f"cache content: {redis_dict}")
+
+        if val:
+            r_data_print()
+            val: int = val.decode('utf-8')
+            print(f"cached value returned: {val}")
+            return val
+        else:
+            res: int = func(*args, **kwargs)
+            print(f"multiplier({key}) = {res}")
+
+        # Do something after the function.
+        r.mset({key: res})
+        r_data_print()
+
+        return res
+
+    return wrapper
+
+
+@cache_redis
 def multiplier(number: int):
     '''multiplier pure function'''
 
     return number * 2
 
 
+multiplier(50)
 multiplier(100)
 multiplier(200)
 multiplier(300)
@@ -52,6 +93,7 @@ multiplier(100)
 multiplier(200)
 multiplier(300)
 multiplier(400)
+multiplier(500)
 print(f"multiplier(100) returned value = {multiplier(100)}")
 print(multiplier.__name__)
 print(multiplier.__doc__)
