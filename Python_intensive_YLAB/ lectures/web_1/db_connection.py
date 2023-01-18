@@ -4,8 +4,8 @@
 from sqlalchemy import create_engine
 
 # DEFINE THE DATABASE CREDENTIALS
-user = 'root'
-password = 'password'
+user = ''
+password = ''
 host = '127.0.0.1'
 port = 5432
 database = 'postgres'

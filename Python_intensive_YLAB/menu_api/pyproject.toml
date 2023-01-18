@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "menu-api"
+version = "0.1.0"
+description = "restaurant menu api"
+authors = ["valed-dm <dmvaled@gmail.com>"]
+readme = "README.md"
+packages = [{include = "menu_api"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.89.1"
+uvicorn = "^0.20.0"
+sqlalchemy = "^1.4.46"
+alembic = "^1.9.2"
+tenacity = "^8.1.0"
+psycopg2 = "^2.9.5"
+sqlalchemy-utils = "^0.39.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
