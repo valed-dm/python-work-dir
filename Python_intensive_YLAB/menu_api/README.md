@@ -10,7 +10,7 @@ postgresql = {
 
 Для запуска проекта в терминале:
 
-    $ zsh, bash run.sh
+    $ zsh,bash run.sh
     $ alembic upgrade head
 
 Создается БД menus с таблицами menus, submenus, dishes.
