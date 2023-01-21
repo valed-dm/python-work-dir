@@ -3,8 +3,8 @@ from typing import Optional
 
 
 class MenusBase(BaseModel):
-    menus_item: str
-    menus_description: str
+    title: str
+    description: str
 
 
 class MenusCreate(MenusBase):

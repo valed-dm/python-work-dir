@@ -2,8 +2,8 @@ from pydantic import BaseModel
 
 
 class SubmenusBase(BaseModel):
-    submenus_item: str
-    submenus_description: str
+    title: str
+    description: str
 
 
 class SubmenusCreate(SubmenusBase):

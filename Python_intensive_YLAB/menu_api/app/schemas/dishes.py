@@ -2,9 +2,9 @@ from pydantic import BaseModel
 
 
 class DishesBase(BaseModel):
-    dish_name: str
-    dish_description: str
-    dish_price: str
+    title: str
+    description: str
+    price: str
 
 
 class DishesCreate(DishesBase):
