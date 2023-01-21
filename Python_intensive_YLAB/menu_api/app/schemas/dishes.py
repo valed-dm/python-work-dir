@@ -2,21 +2,21 @@ from pydantic import BaseModel
 
 
 class DishesBase(BaseModel):
-    title: str
-    description: str
+    dish_name: str
+    dish_description: str
+    dish_price: str
 
 
-class DishesBaseCreate(DishesBase):
-    title: str
-    description: str
-    submenus_id: int
+class DishesCreate(DishesBase):
+    pass
 
-class DishesBaseUpdate(DishesBase):
-    title: str
+
+class DishesUpdate(DishesBase):
+    pass
 
 
 # Properties shared by models stored in DB
-class DishesBaseInDBBase(DishesBase):
+class DishesInDBBase(DishesBase):
     id: int
     submenus_id: int
 
@@ -24,11 +24,11 @@ class DishesBaseInDBBase(DishesBase):
         orm_mode = True
 
 
-# Properties to return to client
-class Dishes(DishesBaseInDBBase):
+# Properties properties stored in DB
+class DishesInDB(DishesInDBBase):
     pass
 
 
-# Properties properties stored in DB
-class DishesInDB(DishesBaseInDBBase):
+# Properties to return to client
+class Dishes(DishesInDBBase):
     pass
