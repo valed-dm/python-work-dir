@@ -47,7 +47,8 @@ def fetch_menus_item(
         # error otherwise.
         raise HTTPException(
             status_code=404,
-            detail=f"Menu item with ID {menu_id} not found"
+            # detail=f"Menu item with ID {menu_id} not found"
+            detail="menu not found"
         )
 
     return result

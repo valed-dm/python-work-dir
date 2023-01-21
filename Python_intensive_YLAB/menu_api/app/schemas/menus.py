@@ -13,11 +13,11 @@ class MenusCreate(MenusBase):
 
 class MenusUpdate(MenusBase):
     pass
-   
+
 
 # Properties shared by models stored in DB
 class MenusInDBBase(MenusBase):
-    id: Optional[int] = None
+    id: int
 
     class Config:
         orm_mode = True

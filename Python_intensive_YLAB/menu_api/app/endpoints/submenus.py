@@ -47,7 +47,8 @@ def get_submenus_item(
         # error otherwise.
         raise HTTPException(
             status_code=404,
-            detail=f"Submenu item with ID {api_test_submenus_id} not found"
+            # detail=f"Submenu item with ID {api_test_submenus_id} not found"
+            detail="submenu not found"
         )
 
     return result

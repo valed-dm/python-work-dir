@@ -47,7 +47,8 @@ def read_dish_item(
         # error otherwise.
         raise HTTPException(
             status_code=404,
-            detail=f"Submenu item with ID {api_test_dish_id} not found"
+            # detail=f"Dish item with ID {api_test_dish_id} not found"
+            detail="dish not found"
         )
 
     return result
