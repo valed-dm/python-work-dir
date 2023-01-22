@@ -1,7 +1,7 @@
-from typing import List
 from fastapi import APIRouter, HTTPException, Depends
-from sqlalchemy.orm import Session
 from fastapi.encoders import jsonable_encoder
+from sqlalchemy.orm import Session
+from typing import List
 
 
 from app import deps
@@ -42,6 +42,7 @@ def get_submenus_item(
     READ a single submenus item
     """
     result = crud.submenus.get(db=db, id=api_test_submenus_id)
+
     if not result:
         # the exception is raised, not returned - you will get a validation
         # error otherwise.
@@ -50,6 +51,9 @@ def get_submenus_item(
             # detail=f"Submenu item with ID {api_test_submenus_id} not found"
             detail="submenu not found"
         )
+
+    result = jsonable_encoder(result)
+    result['id'] = str(result['id'])
 
     return result
 
@@ -65,7 +69,12 @@ def add_submenus_item(
     """
     item_in: dict = jsonable_encoder(submenus_item_in)
     item_in.update({'menus_id': api_test_menus_id})
-    return crud.submenus.create(db=db, obj_in=item_in)
+
+    result = crud.submenus.create(db=db, obj_in=item_in)
+    result = jsonable_encoder(result)
+    result['id'] = str(result['id'])
+
+    return result
 
 
 @router.delete("/{api_test_submenus_id}", status_code=200)
@@ -79,7 +88,7 @@ def delete_submenus_item(
     return crud.submenus.remove(db=db, id=api_test_submenus_id)
 
 
-@router.patch("/{api_test_submenus_id}}", status_code=201)
+@router.patch("/{api_test_submenus_id}}", status_code=200)
 def update_submenus_item(
     api_test_submenus_id: int,
     updated_fields: SubmenusUpdate,

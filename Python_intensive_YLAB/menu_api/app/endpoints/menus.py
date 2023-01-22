@@ -1,4 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi.encoders import jsonable_encoder
 from sqlalchemy.orm import Session
 
 
@@ -16,7 +17,7 @@ router = APIRouter(
 
 
 @router.get("", status_code=200)
-def get_all_menus_items(
+def read_all_menus_items(
     db: Session = Depends(deps.get_db),
 ):
     """
@@ -28,19 +29,15 @@ def get_all_menus_items(
     )
 
 
-@router.get("/{menu_id}", status_code=200)
-def fetch_menus_item(
-    *,
-    menu_id: int,
+@router.get("/{menus_id}", status_code=200)
+def read_menus_item(
+    menus_id: int,
     db: Session = Depends(deps.get_db),
 ):
     """
     READ a single menu item
     """
-    result = crud.menus.get(
-        db=db,
-        id=menu_id
-    )
+    result = crud.menus.get(db=db, id=menus_id)
 
     if not result:
         # the exception is raised, not returned - you will get a validation
@@ -50,6 +47,9 @@ def fetch_menus_item(
             # detail=f"Menu item with ID {menu_id} not found"
             detail="menu not found"
         )
+
+    result = jsonable_encoder(result)
+    result['id'] = str(result['id'])
 
     return result
 
@@ -62,10 +62,11 @@ def add_menus_item(
     """
     CREATE a new menu item.
     """
-    return crud.menus.create(
-        db=db,
-        obj_in=menu_item_in
-    )
+    result = crud.menus.create(db=db, obj_in=menu_item_in)
+    result = jsonable_encoder(result)
+    result['id'] = str(result['id'])
+
+    return result
 
 
 @router.delete("/{menu_id}", status_code=200)
@@ -82,7 +83,7 @@ def delete_menus_item(
     )
 
 
-@router.patch("/{menu_id}}", status_code=201)
+@router.patch("/{menu_id}}", status_code=200)
 def update_menus_item(
     menu_id,
     updated_fields: MenusUpdate,

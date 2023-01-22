@@ -1,7 +1,7 @@
-from typing import List
 from fastapi import APIRouter, HTTPException, Depends
-from sqlalchemy.orm import Session
 from fastapi.encoders import jsonable_encoder
+from sqlalchemy.orm import Session
+from typing import List
 
 
 from app import deps
@@ -42,6 +42,7 @@ def read_dish_item(
     READ a single dish item
     """
     result = crud.dishes.get(db=db, id=api_test_dish_id)
+
     if not result:
         # the exception is raised, not returned - you will get a validation
         # error otherwise.
@@ -50,6 +51,9 @@ def read_dish_item(
             # detail=f"Dish item with ID {api_test_dish_id} not found"
             detail="dish not found"
         )
+
+    # result = jsonable_encoder(result)
+    # result['id'] = str(result['id'])
 
     return result
 
@@ -65,7 +69,13 @@ def create_dish_item(
     """
     item_in: dict = jsonable_encoder(dish_item_in)
     item_in.update({'submenus_id': api_test_submenus_id})
-    return crud.dishes.create(db=db, obj_in=item_in)
+
+    result = crud.dishes.create(db=db, obj_in=item_in)
+    result = jsonable_encoder(result)
+    result['id'] = str(result['id'])
+    result['price'] = str(result['price'])
+
+    return result
 
 
 @router.delete("/{api_test_dish_id}", status_code=200)
@@ -79,7 +89,7 @@ def delete_dish_item(
     return crud.dishes.remove(db=db, id=api_test_dish_id)
 
 
-@router.patch("/{api_test_dish_id}}", status_code=201)
+@router.patch("/{api_test_dish_id}}", status_code=200)
 def update_dish_item(
     api_test_dish_id: int,
     updated_fields: DishesUpdate,
