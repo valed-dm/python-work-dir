@@ -18,7 +18,7 @@ def get_database():
     """
     try:
         engine = get_engine_from_settings()
-        log.info("Connected to PostgreSQL database!")
+        log.info("Connected to PostgresSQL database!")
     except IOError:
         log.exception("Failed to get database connection!")
         return None, 'fail'
