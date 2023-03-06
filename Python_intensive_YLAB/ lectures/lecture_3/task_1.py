@@ -21,6 +21,8 @@ def cache(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
         # Do something before the function.
+        nonlocal cache
+
         key = str(args[0])
 
         if key in cache:
