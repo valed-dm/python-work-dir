@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 
 
 from app import deps
-from app.crud import crud_menus as crud
+from app.crud.crud_menus import menus
 from app.schemas.menus import MenusCreate, MenusUpdate
 
 
@@ -23,7 +23,7 @@ def read_all_menus_items(
     """
     READ all menus items
     """
-    return crud.menus.get_multi(
+    return menus.get_multi(
         db=db,
         limit=100
     )
@@ -37,7 +37,7 @@ def read_menus_item(
     """
     READ a single menu item
     """
-    result = crud.menus.get(db=db, id=menus_id)
+    result = menus.get(db=db, id=menus_id)
 
     if not result:
         # the exception is raised, not returned - you will get a validation
@@ -55,45 +55,54 @@ def read_menus_item(
 
 
 @router.post("", status_code=201)
-def add_menus_item(
-    menu_item_in: MenusCreate,
+def create_menus_item(
+    menus_item_in: MenusCreate,
     db: Session = Depends(deps.get_db)
 ):
     """
     CREATE a new menu item.
     """
-    result = crud.menus.create(db=db, obj_in=menu_item_in)
+    menus_item_in = jsonable_encoder(menus_item_in)
+    menus_item_in.update({'submenus_counter': 0, 'dishes_counter': 0})
+
+    result = menus.create(db=db, obj_in=menus_item_in)
     result = jsonable_encoder(result)
+
     result['id'] = str(result['id'])
+    result['submenus_counter'] = str(result['submenus_counter'])
+    result['dishes_counter'] = str(result['dishes_counter'])
 
     return result
 
 
-@router.delete("/{menu_id}", status_code=200)
+@router.delete("/{menus_id}", status_code=200)
 def delete_menus_item(
-    menu_id: int,
+    menus_id: int,
     db: Session = Depends(deps.get_db)
 ):
     """
     DELETE a menu item.
     """
-    return crud.menus.remove(
+    return menus.remove(
         db=db,
-        id=menu_id
+        id=menus_id
     )
 
 
-@router.patch("/{menu_id}}", status_code=200)
+@router.patch("/{menus_id}", status_code=200)
 def update_menus_item(
-    menu_id,
+    menus_id,
     updated_fields: MenusUpdate,
     db: Session = Depends(deps.get_db)
 ):
     """
     UPDATE a menu item.
     """
-    return crud.menus.update_item(
+    result = menus.update_item(
         db=db,
-        item_id=menu_id,
+        item_id=menus_id,
         updated_fields=updated_fields
     )
+    result = jsonable_encoder(result)
+
+    return result
