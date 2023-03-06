@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Optional
 
 
 class DishesBase(BaseModel):
@@ -12,7 +13,9 @@ class DishesCreate(DishesBase):
 
 
 class DishesUpdate(DishesBase):
-    pass
+    title: Optional[str] = None
+    description: Optional[str] = None
+    price: Optional[str] = None
 
 
 # Properties shared by models stored in DB
@@ -24,7 +27,7 @@ class DishesInDBBase(DishesBase):
         orm_mode = True
 
 
-# Properties properties stored in DB
+# Properties stored in DB
 class DishesInDB(DishesInDBBase):
     pass
 
