@@ -1,8 +1,8 @@
 """create tables for menus db
 
-Revision ID: a1826e6f2c5e
+Revision ID: 73ddf3df6ebc
 Revises: 
-Create Date: 2023-01-21 21:03:28.069008
+Create Date: 2023-01-25 07:43:15.087815
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a1826e6f2c5e'
+revision = '73ddf3df6ebc'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -22,6 +22,8 @@ def upgrade() -> None:
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=64), nullable=False),
     sa.Column('description', sa.String(length=256), nullable=True),
+    sa.Column('submenus_counter', sa.Integer(), nullable=True),
+    sa.Column('dishes_counter', sa.Integer(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('title', name='_menus_title_uc')
     )
@@ -30,6 +32,7 @@ def upgrade() -> None:
     sa.Column('menus_id', sa.Integer(), nullable=False),
     sa.Column('title', sa.String(length=64), nullable=False),
     sa.Column('description', sa.String(length=256), nullable=True),
+    sa.Column('dishes_counter', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['menus_id'], ['menus.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('title', name='_submenus_title_uc')
