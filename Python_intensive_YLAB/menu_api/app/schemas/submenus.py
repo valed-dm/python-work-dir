@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Optional
 
 
 class SubmenusBase(BaseModel):
@@ -11,13 +12,15 @@ class SubmenusCreate(SubmenusBase):
 
 
 class SubmenusUpdate(SubmenusBase):
-    pass
+    title: Optional[str] = None
+    description: Optional[str] = None
 
 
 # Properties shared by models stored in DB
 class SubmenusInDBBase(SubmenusBase):
     id: int
     menus_id: int
+    dishes_counter: int
 
     class Config:
         orm_mode = True

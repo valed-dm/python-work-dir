@@ -1,11 +1,13 @@
 from fastapi import APIRouter, HTTPException, Depends
 from fastapi.encoders import jsonable_encoder
+from sqlalchemy import update
 from sqlalchemy.orm import Session
 from typing import List
 
 
 from app import deps
-from app.crud import crude_submenus as crud
+from app.crud.crud_menus import menus
+from app.crud.crude_submenus import submenus
 from app.schemas.submenus import Submenus, SubmenusCreate, SubmenusUpdate
 
 
@@ -18,7 +20,7 @@ router = APIRouter(
 
 
 @router.get("", status_code=200)
-def get_all_submenus_items(
+def read_all_submenus_items(
     api_test_menus_id: int,
     db: Session = Depends(deps.get_db)
 ) -> List[Submenus]:
@@ -26,7 +28,7 @@ def get_all_submenus_items(
     READ all submenus items
     """
     submenus_items_list = jsonable_encoder(
-        crud.submenus.get_multi(db=db, limit=100))
+        submenus.get_multi(db=db, limit=100))
     return list(filter(
         lambda x: x['menus_id'] == api_test_menus_id,
         submenus_items_list
@@ -34,14 +36,14 @@ def get_all_submenus_items(
 
 
 @router.get("/{api_test_submenus_id}", status_code=200)
-def get_submenus_item(
+def read_submenus_item(
     api_test_submenus_id: int,
     db: Session = Depends(deps.get_db),
 ):
     """
     READ a single submenus item
     """
-    result = crud.submenus.get(db=db, id=api_test_submenus_id)
+    result = submenus.get(db=db, id=api_test_submenus_id)
 
     if not result:
         # the exception is raised, not returned - you will get a validation
@@ -59,7 +61,7 @@ def get_submenus_item(
 
 
 @router.post("", status_code=201)
-def add_submenus_item(
+def create_submenus_item(
     api_test_menus_id: int,
     submenus_item_in: SubmenusCreate,
     db: Session = Depends(deps.get_db)
@@ -67,12 +69,30 @@ def add_submenus_item(
     """
     CREATE a new submenus item.
     """
+    # create submenus
     item_in: dict = jsonable_encoder(submenus_item_in)
-    item_in.update({'menus_id': api_test_menus_id})
+    item_in.update({'menus_id': api_test_menus_id, 'dishes_counter': 0})
 
-    result = crud.submenus.create(db=db, obj_in=item_in)
+    result = submenus.create(db=db, obj_in=item_in)
     result = jsonable_encoder(result)
+
     result['id'] = str(result['id'])
+    result['menus_id'] = str(result['menus_id'])
+    result['dishes_counter'] = str(result['dishes_counter'])
+    print(result)
+
+    # update submenus_counter in menus table
+    menus_in = menus.get(db=db, id=api_test_menus_id)
+    menus_in: dict = jsonable_encoder(menus_in)
+    print(menus_in)
+    new_submenus_counter = menus_in['submenus_counter'] + 1
+    updated_fields = {'submenus_counter': new_submenus_counter}
+    print(updated_fields)
+    menus.update_item(
+        db=db,
+        item_id=api_test_menus_id,
+        updated_fields=updated_fields
+    )
 
     return result
 
@@ -85,10 +105,27 @@ def delete_submenus_item(
     """
     DELETE a submenus item.
     """
-    return crud.submenus.remove(db=db, id=api_test_submenus_id)
+    # get menus_id
+    submenus_item = submenus.get(db=db, id=api_test_submenus_id)
+    submenus_item = jsonable_encoder(submenus_item)
+    menus_id = submenus_item['menus_id']
+
+    # update submenus_counter
+    menus_to_update = menus.get(db=db, id=menus_id)
+    menus_to_update = jsonable_encoder(menus_to_update)
+    new_submenus_counter = menus_to_update['submenus_counter'] - 1
+    menus_to_update.update({'submenus_counter': new_submenus_counter})
+    menus.update_item(
+        db=db,
+        item_id=menus_id,
+        updated_fields=menus_to_update
+    )
+
+    # delete submenus
+    return submenus.remove(db=db, id=api_test_submenus_id)
 
 
-@router.patch("/{api_test_submenus_id}}", status_code=200)
+@router.patch("/{api_test_submenus_id}", status_code=200)
 def update_submenus_item(
     api_test_submenus_id: int,
     updated_fields: SubmenusUpdate,
@@ -97,8 +134,11 @@ def update_submenus_item(
     """
     UPDATE a submenus item.
     """
-    return crud.submenus.update_item(
+    result = submenus.update_item(
         db=db,
         item_id=api_test_submenus_id,
         updated_fields=updated_fields
     )
+    result = jsonable_encoder(result)
+
+    return result
