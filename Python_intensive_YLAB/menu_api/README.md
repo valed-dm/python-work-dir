@@ -15,3 +15,5 @@ postgresql = {
 
 Создается БД menus с таблицами menus, submenus, dishes.
 Приложение готово к работе и тестированию.
+
+<!-- https://www.youtube.com/watch?v=61kFfBzQtRI -->
