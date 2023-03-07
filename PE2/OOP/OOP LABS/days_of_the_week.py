@@ -17,13 +17,16 @@
 # Tue
 # Sun
 # Sorry, I can't serve your request.
+import calendar as cal
 
 class WeekDayError(Exception):
     pass
 	
 
 class Weeker:
-    week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    # week = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+    week = [day for day in cal.day_abbr]
+    
 
     def __init__(self, day: str):
         if not day in Weeker.week:
@@ -33,21 +36,31 @@ class Weeker:
     def __str__(self):
         return self.__day
 
+    # def add_days(self, n: int):
+    #     day_position = Weeker.week.index(self.__day)
+    #     day_shift = n % 7
+    #     new_position = day_position + day_shift
+    #     if new_position > 7:
+    #         new_position -= 7
+    #     self.__day = Weeker.week[new_position]
+
+    # def subtract_days(self, n: int):
+    #     day_position = Weeker.week.index(self.__day)
+    #     day_shift = n % 7
+    #     new_position = day_position - day_shift
+    #     if new_position < 0:
+    #         new_position = 7 + new_position
+    #     self.__day = Weeker.week[new_position]
+
     def add_days(self, n: int):
-        day_position = Weeker.week.index(self.__day)
-        day_shift = n % 7
-        new_position = day_position + day_shift
-        if new_position > 7:
-            new_position -= 7
-        self.__day = Weeker.week[new_position]
+        pos = Weeker.week.index(self.__day)
+        shift = (pos + n % 7) % 7
+        self.__day = Weeker.week[shift]
 
     def subtract_days(self, n: int):
-        day_position = Weeker.week.index(self.__day)
-        day_shift = n % 7
-        new_position = day_position - day_shift
-        if new_position < 0:
-            new_position = 7 + new_position
-        self.__day = Weeker.week[new_position]
+        pos = Weeker.week.index(self.__day)
+        shift = (pos - n % 7) % 7
+        self.__day = Weeker.week[shift]
 
 try:
     weekday = Weeker('Mon')
